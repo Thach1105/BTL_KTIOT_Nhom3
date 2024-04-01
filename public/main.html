@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dash Board</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo"></div>
+      <ul class="menu">
+        <li class="active">
+          <a href="#">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-chart-bar"></i>
+            <span>Statistics</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-solid fa-door-closed"></i>
+            <span>Door</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class="fas fa-regular fa-lightbulb"></i>
+            <span>Light</span>
+          </a>
+        </li>
+        <li class="logout">
+          <a href="#">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main--content">
+      <div class="header--wrapper">
+        <div class="header--title">
+          <span>Primary</span>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="user--info">
+          <div class="searh--box">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" placeholder="Search" />
+          </div>
+          <img src="../img/dog.jpg" alt="" />
+        </div>
+      </div>
+      <div class="card-container">
+        <h3 class="main--title">Today's data</h3>
+        <div class="card--wrapper">
+          <!-- phan -->
+          <div class="payment--card light-red">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title"> Temperature </span>
+                <span id="reading-temp" class="amount-value"></span>
+              </div>
+
+              <i class="fas fa-regular fa-sun icon"></i>
+            </div>
+          </div>
+          <!-- phan -->
+          <div class="payment--card light-purple">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title"> Light room </span>
+                <span id="led-Living" class="amount-value"></span>
+              </div>
+              <i class="fa-regular fa-lightbulb icon dark-purple"></i>
+            </div>
+            <div class="card-detail">
+              <button id="toggleButton" class="button">Khởi động</button>
+            </div>
+          </div>
+          <!-- phan -->
+          <div class="payment--card light-green">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title">MQ2 Sensor </span>
+                <span id="reading-mq2" class="amount-value"></span>
+              </div>
+
+              <i class="fas fa-brands fa-galactic-senate icon dark-green"></i>
+            </div>
+          </div>
+          <!-- phan -->
+          <div class="payment--card light-blue">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title">Humidity</span>
+                <span id="reading-hum" class="amount-value"></span>
+              </div>
+
+              <i class="fas fa-solid fa-droplet icon dark-blue"></i>
+            </div>
+          </div>
+          <!-- phan -->
+          <div class="payment--card light-yellow">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title"> Open door </span>
+                <span id="door" class="amount-value"></span>
+              </div>
+              <i class="fa-solid fa-door-open icon dark-yellow"></i>
+            </div>
+            <div class="card-detail">
+              <button id="toggleButton_two" class="button">Khởi động</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- phan khac -->
+      <div class="tabular--wrapper">
+        <h3 class="main--title">Measured data</h3>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Temperature</th>
+                <th>Light room</th>
+                <th>Reading MQ2 Sensor</th>
+                <th>Humidity</th>
+                <th>Open door</th>
+              </tr>
+              <tbody>
+                <tr>
+                    <td>39°C</td>
+                    <td>0</td>
+                    <td>100ppm</td>
+                    <td>5%</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>19°C</td>
+                    <td>1</td>
+                    <td>200ppm</td>
+                    <td>25%</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>25°C</td>
+                    <td>1</td>
+                    <td>100ppm</td>
+                    <td>15%</td>
+                    <td>0</td>
+                </tr>
+              </tbody>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script defer src="/__/firebase/10.10.0/firebase-app-compat.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/10.10.0/firebase-auth-compat.js"></script>
+  <script defer src="/__/firebase/10.10.0/firebase-database-compat.js"></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-firestore-compat.js"
+  ></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-functions-compat.js"
+  ></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-messaging-compat.js"
+  ></script>
+  <script defer src="/__/firebase/10.10.0/firebase-storage-compat.js"></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-analytics-compat.js"
+  ></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-remote-config-compat.js"
+  ></script>
+  <script
+    defer
+    src="/__/firebase/10.10.0/firebase-performance-compat.js"
+  ></script>
+  <!-- 
+      initialize the SDK after all desired features are loaded, set useEmulator to false
+      to avoid connecting the SDK to running emulators.
+    -->
+  <script defer src="/__/firebase/init.js?useEmulator=true"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+  <script>
+    // REPLACE WITH YOUR web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCWkAeV1Uf_Yxh5U-BV3Ky8ymkozYi6nUE",
+      authDomain: "esp32-fb-test-18364.firebaseapp.com",
+      databaseURL:
+        "https://esp32-fb-test-18364-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "esp32-fb-test-18364",
+      storageBucket: "esp32-fb-test-18364.appspot.com",
+      messagingSenderId: "202899615196",
+      appId: "1:202899615196:web:aea4cbd9c214da035f7319",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+    // bật/tắt light
+    document.addEventListener("DOMContentLoaded", function () {
+      var toggleButton = document.getElementById("toggleButton");
+      var isActive = false;
+
+      toggleButton.addEventListener("click", async function () {
+        isActive = !isActive;
+        try {
+          //dùng firebase lấy dữ liệu
+            // await database.ref(`/devices/${deviceId}`).set({ state: newState });
+          if (isActive) {
+            toggleButton.classList.add("active");
+            toggleButton.classList.remove("inactive");
+            toggleButton.textContent = "Đang bật";
+          } else {
+            toggleButton.classList.add("inactive");
+            toggleButton.classList.remove("active");
+            toggleButton.textContent = "Đã tắt";
+          }
+        } catch (error) {
+          console.error("Error:", err);
+        }
+      });
+    });
+
+    // đóng/mở cửa
+    document.addEventListener("DOMContentLoaded", function () {
+      var toggleButton = document.getElementById("toggleButton_two");
+      var isActive = false;
+
+      toggleButton.addEventListener("click", async function () {
+        isActive = !isActive;
+        try {
+          //   await database.ref(`/devices/${deviceId}`).set({ state: newState });
+          if (isActive) {
+            toggleButton.classList.add("active");
+            toggleButton.classList.remove("inactive");
+            toggleButton.textContent = "Đang mở";
+          } else {
+            toggleButton.classList.add("inactive");
+            toggleButton.classList.remove("active");
+            toggleButton.textContent = "Đã đóng cửa";
+          }
+        } catch (error) {
+          console.error("Error:", err);
+        }
+      });
+    });
+
+    // xuất ra màn hình
+    // Database Paths
+    const databaseTemp = database.ref("/dht/temp");
+    const databaseHum = database.ref("/dht/hum");
+    const databaseMQ2 = database.ref("/mq2");
+    const databaseLedLiving = database.ref("/living/ledStatus");
+    const databaseDoor = database.ref("/door");
+    // Variables to save database current values
+    var x;
+    var y;
+    var z;
+    var ledLiving;
+    // Attach an asynchronous callback to read the data
+    databaseTemp.on(
+      "value",
+      (snapshot) => {
+        x = snapshot.val();
+        // test kết quả
+        console.log(x);
+        updateElement("reading-temp", x);
+      },
+      (errorObject) => {
+        console.log("The read failed: " + errorObject.name);
+      }
+    );
+
+    databaseHum.on(
+      "value",
+      (snapshot) => {
+        y = snapshot.val();
+        // test kết quả
+        console.log(y);
+        updateElement("reading-hum", y);
+      },
+      (errorObject) => {
+        console.log("The read failed: " + errorObject.name);
+      }
+    );
+
+    databaseMQ2.on(
+      "value",
+      (snapshot) => {
+        z = snapshot.val();
+        // test kết quả
+        console.log(z);
+
+        updateElement("reading-mq2", z);
+      },
+      (errorObject) => {
+        console.log("The read failed: " + errorObject.name);
+      }
+    );
+
+    databaseLedLiving.on(
+      "value",
+      (snapshot) => {
+        ledLiving = snapshot.val();
+        // if (ledLiving == 1) ledLiving = "ON";
+        // else ledLiving = "OFF";
+        ledLiving = ledLiving == 1 ? "ON" : "OFF";
+        // test ket qua
+        console.log(ledLiving);
+        updateElement("led-Living", ledLiving);
+      },
+      (errorObject) => {
+        console.log("The read failed: " + errorObject.name);
+      }
+    );
+    databaseDoor.on(
+        "value",
+      (snapshot) => {
+        ledLiving = snapshot.val();
+        // if (ledLiving == 1) ledLiving = "ON";
+        // else ledLiving = "OFF";
+        ledLiving = ledLiving == 1 ? "ON" : "OFF";
+        // test ket qua
+        console.log(ledLiving);
+        updateElement("led-Living", ledLiving);
+      },
+      (errorObject) => {
+        console.log("The read failed: " + errorObject.name);
+      }
+    )
+
+    // Function to update DOM element safely
+    function updateElement(elementId, newValue) {
+      var element = document.getElementById(elementId);
+      if (element) {
+        element.innerHTML = newValue;
+      } else {
+        console.log("Không tìm thấy phần tử với id '" + elementId + "'");
+      }
+    }
+  </script>
+
+  </html>
