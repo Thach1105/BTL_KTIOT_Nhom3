@@ -128,6 +128,19 @@
               <button id="toggleButton_two" class="button">Khởi động</button>
             </div>
           </div>
+
+          <!-- <div class="payment--card light-purple">
+            <div class="card--header">
+              <div class="ammount">
+                <span class="title"> Light room </span>
+                <span id="led-Living" class="amount-value"></span>
+              </div>
+              <i class="fa-regular fa-lightbulb icon dark-purple"></i>
+            </div>
+            <div class="card-detail">
+              <button id="toggleButton" class="button">Khởi động</button>
+            </div>
+          </div> -->
         </div>
       </div>
       <!-- phan khac -->
@@ -232,7 +245,7 @@
         isActive = !isActive;
         try {
           //dùng firebase lấy dữ liệu
-            // await database.ref(`/devices/${deviceId}`).set({ state: newState });
+            await database.ref('/living').set({ ledStatus: isActive });
           if (isActive) {
             toggleButton.classList.add("active");
             toggleButton.classList.remove("inactive");
@@ -256,7 +269,7 @@
       toggleButton.addEventListener("click", async function () {
         isActive = !isActive;
         try {
-          //   await database.ref(`/devices/${deviceId}`).set({ state: newState });
+            await database.ref('/door').set({ doorStatus: isActive });
           if (isActive) {
             toggleButton.classList.add("active");
             toggleButton.classList.remove("inactive");
@@ -278,7 +291,7 @@
     const databaseHum = database.ref("/dht/hum");
     const databaseMQ2 = database.ref("/mq2");
     const databaseLedLiving = database.ref("/living/ledStatus");
-    const databaseDoor = database.ref("/door");
+    const databaseDoor = database.ref("/door/doorStatus");
     // Variables to save database current values
     var x;
     var y;
@@ -333,7 +346,7 @@
         // else ledLiving = "OFF";
         ledLiving = ledLiving == 1 ? "ON" : "OFF";
         // test ket qua
-        console.log(ledLiving);
+        // console.log(ledLiving);
         updateElement("led-Living", ledLiving);
       },
       (errorObject) => {
@@ -343,13 +356,13 @@
     databaseDoor.on(
         "value",
       (snapshot) => {
-        ledLiving = snapshot.val();
+        openDoor = snapshot.val();
         // if (ledLiving == 1) ledLiving = "ON";
         // else ledLiving = "OFF";
-        ledLiving = ledLiving == 1 ? "ON" : "OFF";
+        openDoor = openDoor == 1 ? "ON" : "OFF";
         // test ket qua
-        console.log(ledLiving);
-        updateElement("led-Living", ledLiving);
+        // console.log(ledLiving);
+        updateElement("door", openDoor);
       },
       (errorObject) => {
         console.log("The read failed: " + errorObject.name);
